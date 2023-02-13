@@ -14,12 +14,12 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Navbar />}>
       <Route index element={<Home />} />
-      <Route
+      {/* <Route
         path=":id"
         element={<CountryDetails />}
         // TO_DO
         // loader={countryDetailsLoader}c
-      />
+      /> */}
       <Route path="*" element={<NotFound />} />
     </Route>
   )
