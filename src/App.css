@@ -9,18 +9,30 @@
   max-width: 1440px;
 }
 
+.dark {
+  background-color: var(--dark-mode-el);
+  color: var(--mode);
+}
+.light {
+  background-color: var(--light-mode-bg);
+  color: var(--light-mode-text);
+}
+
 /* navbar */
 .navbar {
   height: 80px;
   width: 100%;
   padding: 0 100px;
-  background-color: var(--mode);
   box-shadow: 0 1px 4px 1px rgba(0, 0, 0, 0.1);
 }
 
 .navbar h2 {
   font-size: 20px;
   flex: 1;
+}
+
+.mode_switcher {
+  cursor: pointer;
 }
 
 .mode_switcher span {
@@ -31,7 +43,6 @@
 
 /* main  */
 main {
-  background-color: var(--light-mode-bg);
   height: calc(100vh - 80px);
   width: 100%;
   padding: 30px 100px;

@@ -6,20 +6,21 @@ import {
   Route,
   RouterProvider,
 } from "react-router-dom";
-import Navbar from "./components/Navbar";
+
 import CountryDetails from "./pages/CountryDetails";
 import NotFound from "./pages/NotFound";
+import Layout from "./components/Layout";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<Navbar />}>
+    <Route path="/" element={<Layout />}>
       <Route index element={<Home />} />
-      {/* <Route
+      <Route
         path=":id"
         element={<CountryDetails />}
         // TO_DO
         // loader={countryDetailsLoader}c
-      /> */}
+      />
       <Route path="*" element={<NotFound />} />
     </Route>
   )
