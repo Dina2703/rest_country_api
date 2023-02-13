@@ -26,7 +26,8 @@ function Layout() {
       <nav className={`navbar flex ${theme}`}>
         <h2>Where in the World?</h2>
         <div className="mode_switcher flex">
-          <FaRegMoon onClick={toggleTheme} /> <span>Dark mode</span>
+          <FaRegMoon style={{ cursor: "pointer" }} onClick={toggleTheme} />{" "}
+          <span>Dark mode</span>
         </div>
       </nav>
       <main
