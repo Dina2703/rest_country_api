@@ -22,7 +22,7 @@ function Home() {
 
   return (
     <div>
-      <Cards />
+      <Cards data={data} />
     </div>
   );
 }

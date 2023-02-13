@@ -1,23 +1,20 @@
 import React from "react";
 
-function Card() {
+function Card({ country }) {
   return (
     <div className="card">
-      <img
-        className="card_img"
-        src="https://s3-alpha.figma.com/hub/file/948140848/1f4d8ea7-e9d9-48b7-b70c-819482fb10fb-cover.png"
-        alt=""
-      />
+      <img className="card_img" src={country.flag} alt="" />
       <div className="card_body">
-        <h3>Germany</h3>
+        <h3>{country.name}</h3>
         <p>
-          <span>Popularion:</span> 81,770.900
+          <span>Popularion:</span>{" "}
+          {country.population.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
         </p>
         <p>
-          <span>Region:</span> Europe
+          <span>Region:</span> {country.region}
         </p>
         <p>
-          <span>Capital:</span> Berlin
+          <span>Capital:</span> {country.capital}
         </p>
       </div>
     </div>

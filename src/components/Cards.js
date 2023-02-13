@@ -1,17 +1,12 @@
 import React from "react";
 import Card from "./Card";
 
-function Cards() {
+function Cards({ data }) {
   return (
     <div className="cards_container">
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
+      {data.map((country) => (
+        <Card country={country} key={country.area} />
+      ))}
     </div>
   );
 }
