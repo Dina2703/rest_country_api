@@ -16,10 +16,8 @@ function Home() {
   // console.log(data);
   async function fetchData() {
     try {
-      const response = await axios.get(
-        "https://restcountries.com/v2/all/?_limit=12"
-      );
-      setData(response.data);
+      const response = await axios.get("https://restcountries.com/v2/all");
+      setData(response.data.slice(0, 12));
       setLoading(false);
     } catch (error) {
       console.log(error);
@@ -36,10 +34,8 @@ function Home() {
 
   async function fetchMoreData() {
     try {
-      const response = await axios.get(
-        `https://restcountries.com/v2/?_limit=${limit}`
-      );
-      setData(response.data);
+      const response = await axios.get(`https://restcountries.com/v2/all`);
+      setData(response.data.slice(0, limit));
     } catch (error) {
       console.log(error);
     }
