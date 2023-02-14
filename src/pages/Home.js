@@ -5,16 +5,16 @@ import { useContext } from "react";
 import { ThemeContext } from "../theme-context";
 
 function Home() {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState([]);
   const [query, setQuery] = useState("");
-  // const [filtered, setFiltered] = useState([]);
+  const [selectedRegion, setSelectedRegion] = useState("");
   const [limit, setLimit] = useState(12);
   const [loading, setLoading] = useState(true);
 
   const { theme } = useContext(ThemeContext);
 
   // console.log(data);
-  async function fetchData() {
+  async function fetchInitialData() {
     try {
       const response = await axios.get("https://restcountries.com/v2/all");
       setData(response.data.slice(0, 12));
@@ -25,7 +25,7 @@ function Home() {
   }
 
   useEffect(() => {
-    fetchData();
+    fetchInitialData();
   }, []);
 
   const handleLoadMore = () => {
@@ -45,7 +45,7 @@ function Home() {
     fetchMoreData();
   }, [limit]);
 
-  console.log(data);
+  // console.log(data);
   const handleChange = async (event) => {
     const inputValue = event.target.value;
     setQuery(inputValue);
@@ -53,8 +53,20 @@ function Home() {
       const response = await axios.get(
         `https://restcountries.com/v2/name/${query}`
       );
-      console.log(response);
+      // console.log(response);
       setData(response.data);
+    }
+  };
+
+  // console.log(data);
+  const handleSelect = async (e) => {
+    const region = e.target.value;
+    if (region.length > 0) {
+      const response = await axios.get(
+        `https://restcountries.com/v2/region/${region}`
+      );
+      setData(response.data);
+      setSelectedRegion(region);
     }
   };
 
@@ -66,10 +78,14 @@ function Home() {
           placeholder="Search for a country..."
           value={query}
           onChange={handleChange}
+          onMouseDown={() => setSelectedRegion("")}
         />
-        <select name="country" id="country_id">
+        <select name="region" onChange={handleSelect} value={selectedRegion}>
+          <option unselectable="on" value="">
+            Filter By Region
+          </option>
           <option value="africa">Africa</option>
-          <option value="america">America</option>
+          <option value="americas">America</option>
           <option value="asia">Asia</option>
           <option value="europe">Europe</option>
           <option value="oceania">Oceania</option>
@@ -82,7 +98,7 @@ function Home() {
       ) : (
         <>
           <Cards data={data} />
-          {!query && (
+          {!query & !selectedRegion && (
             <button
               onClick={handleLoadMore}
               className="pagination-button"
