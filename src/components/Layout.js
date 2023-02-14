@@ -1,39 +1,28 @@
-import { useState, useEffect } from "react";
+import { useContext } from "react";
 import { Outlet } from "react-router-dom";
 import { FaRegMoon } from "react-icons/fa";
+import { ThemeContext } from "../theme-context";
 
 function Layout() {
-  const [theme, setTheme] = useState("light");
-
-  console.log(theme);
-  function toggleTheme() {
-    if (theme === "light") {
-      setTheme("dark");
-    } else {
-      setTheme("light");
-    }
-  }
-
-  // use the localStorage API to store the data, if you want the theme to persist across page refreshes, you can.
-
-  useEffect(() => {
-    localStorage.setItem("theme", theme);
-    document.body.className = theme;
-  }, [theme]);
-
+  const { theme, dark, toggle } = useContext(ThemeContext);
   return (
     <div className="app">
-      <nav className={`navbar flex ${theme}`}>
+      <nav
+        className="navbar flex "
+        style={{ backgroundColor: theme.backgroundColor, color: theme.color }}
+      >
         <h2>Where in the World?</h2>
         <div className="mode_switcher flex">
-          <FaRegMoon style={{ cursor: "pointer" }} onClick={toggleTheme} />{" "}
+          <FaRegMoon style={{ cursor: "pointer" }} onClick={toggle} />
           <span>Dark mode</span>
         </div>
       </nav>
+
       <main
         style={{
-          backgroundColor:
-            theme === "light" ? "var(--light-mode-bg)" : "var(--dark-mode-bg)",
+          backgroundColor: dark
+            ? "var(--dark-mode-bg)"
+            : "var(--light-mode-bg)",
         }}
       >
         <Outlet />
