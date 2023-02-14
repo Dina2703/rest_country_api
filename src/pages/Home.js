@@ -1,16 +1,22 @@
 import { useState, useEffect } from "react";
 import Cards from "../components/Cards";
 import axios from "axios";
+import { useContext } from "react";
+import { ThemeContext } from "../theme-context";
+
 function Home() {
   const [data, setData] = useState([]);
   const [input, setInput] = useState("");
+  const [limit, setLimit] = useState(12);
+
+  const { theme } = useContext(ThemeContext);
 
   console.log(input);
   // console.log(data);
   async function fetchData() {
     try {
       const response = await axios.get(
-        "http://localhost:8000/country_data/?_limit=20"
+        "http://localhost:8000/country_data/?_limit=12"
       );
       setData(response.data);
     } catch (error) {
@@ -21,6 +27,25 @@ function Home() {
   useEffect(() => {
     fetchData();
   }, []);
+
+  const handleLoadMore = () => {
+    setLimit((prev) => prev + 8);
+  };
+
+  async function fetchMoreData() {
+    try {
+      const response = await axios.get(
+        `http://localhost:8000/country_data/?_limit=${limit}`
+      );
+      setData(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    fetchMoreData();
+  }, [limit]);
 
   return (
     <div className="home_page">
@@ -40,6 +65,13 @@ function Home() {
         </select>
       </div>
       <Cards data={data} />
+      <button
+        onClick={handleLoadMore}
+        className="pagination-button"
+        style={{ backgroundColor: theme.backgroundColor, color: theme.color }}
+      >
+        Load more
+      </button>
     </div>
   );
 }

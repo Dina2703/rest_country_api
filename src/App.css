@@ -118,3 +118,19 @@ main {
   font-weight: 600;
   font-size: 16px;
 }
+
+.pagination-button {
+  padding: 1rem 5rem;
+  border: none;
+  margin: 2rem auto;
+  display: flex;
+  cursor: pointer;
+  font-weight: 600;
+  box-shadow: 2px 2px 2px 3px rgba(0, 0, 0, 0.3);
+  transition: transform 0.1 ease-in-out;
+  border-radius: 10px;
+}
+
+.pagination-button:hover {
+  transform: scale(0.98);
+}
