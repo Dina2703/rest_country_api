@@ -5,9 +5,9 @@ import { useContext } from "react";
 import { ThemeContext } from "../theme-context";
 
 function Home() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(null);
   const [query, setQuery] = useState("");
-  const [filtered, setFiltered] = useState([]);
+  // const [filtered, setFiltered] = useState([]);
   const [limit, setLimit] = useState(12);
   const [loading, setLoading] = useState(true);
 
@@ -45,15 +45,17 @@ function Home() {
     fetchMoreData();
   }, [limit]);
 
-  console.log(query);
+  console.log(data);
   const handleChange = async (event) => {
     const inputValue = event.target.value;
     setQuery(inputValue);
-    const response = await axios.get(
-      `http://localhost:8000/country_data/?q=${inputValue}`
-    );
-
-    setData(response.data);
+    if (query.length > 0) {
+      const response = await axios.get(
+        `https://restcountries.com/v2/name/${query}`
+      );
+      console.log(response);
+      setData(response.data);
+    }
   };
 
   return (
@@ -80,16 +82,18 @@ function Home() {
       ) : (
         <>
           <Cards data={data} />
-          <button
-            onClick={handleLoadMore}
-            className="pagination-button"
-            style={{
-              backgroundColor: theme.backgroundColor,
-              color: theme.color,
-            }}
-          >
-            Load more
-          </button>
+          {!query && (
+            <button
+              onClick={handleLoadMore}
+              className="pagination-button"
+              style={{
+                backgroundColor: theme.backgroundColor,
+                color: theme.color,
+              }}
+            >
+              Load more
+            </button>
+          )}
         </>
       )}
     </div>
