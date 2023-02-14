@@ -77,10 +77,15 @@ main {
 
 /* Cards */
 .cards_container {
-  width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
   gap: 40px;
+}
+
+.loading {
+  height: 100vh;
+  text-align: center;
+  margin-top: 3rem;
 }
 
 /* Card */

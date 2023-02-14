@@ -6,19 +6,21 @@ import { ThemeContext } from "../theme-context";
 
 function Home() {
   const [data, setData] = useState([]);
-  const [input, setInput] = useState("");
+  const [query, setQuery] = useState("");
+  const [filtered, setFiltered] = useState([]);
   const [limit, setLimit] = useState(12);
+  const [loading, setLoading] = useState(true);
 
   const { theme } = useContext(ThemeContext);
 
-  console.log(input);
   // console.log(data);
   async function fetchData() {
     try {
       const response = await axios.get(
-        "http://localhost:8000/country_data/?_limit=12"
+        "https://restcountries.com/v2/all/?_limit=12"
       );
       setData(response.data);
+      setLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -35,7 +37,7 @@ function Home() {
   async function fetchMoreData() {
     try {
       const response = await axios.get(
-        `http://localhost:8000/country_data/?_limit=${limit}`
+        `https://restcountries.com/v2/?_limit=${limit}`
       );
       setData(response.data);
     } catch (error) {
@@ -47,14 +49,25 @@ function Home() {
     fetchMoreData();
   }, [limit]);
 
+  console.log(query);
+  const handleChange = async (event) => {
+    const inputValue = event.target.value;
+    setQuery(inputValue);
+    const response = await axios.get(
+      `http://localhost:8000/country_data/?q=${inputValue}`
+    );
+
+    setData(response.data);
+  };
+
   return (
     <div className="home_page">
       <div className="input_control flex">
         <input
           type="text"
           placeholder="Search for a country..."
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
+          value={query}
+          onChange={handleChange}
         />
         <select name="country" id="country_id">
           <option value="africa">Africa</option>
@@ -64,14 +77,25 @@ function Home() {
           <option value="oceania">Oceania</option>
         </select>
       </div>
-      <Cards data={data} />
-      <button
-        onClick={handleLoadMore}
-        className="pagination-button"
-        style={{ backgroundColor: theme.backgroundColor, color: theme.color }}
-      >
-        Load more
-      </button>
+      {loading ? (
+        <div className="loading" style={{ color: theme.color }}>
+          <p>Loading...</p>
+        </div>
+      ) : (
+        <>
+          <Cards data={data} />
+          <button
+            onClick={handleLoadMore}
+            className="pagination-button"
+            style={{
+              backgroundColor: theme.backgroundColor,
+              color: theme.color,
+            }}
+          >
+            Load more
+          </button>
+        </>
+      )}
     </div>
   );
 }
