@@ -16,7 +16,7 @@ const router = createBrowserRouter(
     <Route path="/" element={<Layout />}>
       <Route index element={<Home />} />
       <Route
-        path=":id"
+        path=":countryName"
         element={<CountryDetails />}
         // TO_DO
         // loader={countryDetailsLoader}c
