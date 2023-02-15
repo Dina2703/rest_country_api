@@ -5,7 +5,7 @@ import { ThemeContext } from "../theme-context";
 function Card({ country, setSelectedCountry }) {
   const { theme } = useContext(ThemeContext);
   return (
-    <Link to={country.name.toString().toLowerCase()}>
+    <Link to={country?.name.toString().toLowerCase()}>
       <div
         className="card"
         style={{ backgroundColor: theme.backgroundColor, color: theme.color }}

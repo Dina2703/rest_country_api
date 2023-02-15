@@ -1,7 +1,9 @@
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { ThemeContext } from "../theme-context";
 import axios from "axios";
+import { countries } from "country-data-list";
+import { FaLongArrowAltLeft } from "react-icons/fa";
 
 function CountryDetails() {
   const { theme } = useContext(ThemeContext);
@@ -28,12 +30,24 @@ function CountryDetails() {
   return (
     country && (
       <div
-        className="country_details container"
-        style={{ backgroundColor: theme.backgroundColor, color: theme.color }}
+        className="country_details 
+        "
+        style={{ color: theme.color }}
       >
-        <div>
-          <button>Back</button>
+        <div className="back_btn">
+          <Link to="/">
+            <button
+              style={{
+                backgroundColor: theme.backgroundColor,
+                color: theme.color,
+              }}
+            >
+              <FaLongArrowAltLeft />
+              Back
+            </button>
+          </Link>
         </div>
+
         <div className="flex details_card">
           <img className="card_img" src={country.flag} alt="" />
           <div className="card_body">
@@ -62,19 +76,19 @@ function CountryDetails() {
               </li>
               <li>
                 <span>Currencies:</span>
-                {country.currencies.map((each) => each.name).join(", ")}
+                {country.currencies?.map((each) => each.name).join(", ")}
               </li>
               <li>
                 <span>Languages:</span>
-                {country.languages.map((each) => each.name).join(", ")}
+                {country.languages?.map((each) => each.name).join(", ")}
               </li>
             </ul>
             <div>
               <span>Border Countries: </span>
               <ul>
-                <li>{}</li>
-                <li></li>
-                <li></li>
+                {country.borders?.map((each) => (
+                  <li key={each}>{each}</li>
+                ))}
               </ul>
             </div>
           </div>

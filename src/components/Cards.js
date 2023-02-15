@@ -7,7 +7,7 @@ function Cards({ data }) {
   console.log(selectedCountry);
   return (
     <div className="cards_container">
-      {data.map((country) => (
+      {data?.map((country) => (
         <Card
           country={country}
           key={country.area}

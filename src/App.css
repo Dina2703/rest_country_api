@@ -135,9 +135,46 @@ main {
   font-weight: 600;
   box-shadow: 2px 2px 2px 3px rgba(0, 0, 0, 0.3);
   transition: transform 0.1 ease-in-out;
-  border-radius: 10px;
+  border-radius: 4px;
 }
 
 .pagination-button:hover {
   transform: scale(0.98);
+}
+
+/* country details page */
+.country_details .back_btn {
+  padding: 2rem 0;
+}
+
+.back_btn button {
+  padding: 7px 30px;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 2px 2px 2px 3px rgba(0, 0, 0, 0.3);
+  transition: transform 0.1 ease-in-out;
+  border-radius: 4px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.back_btn button:hover {
+  transform: scale(0.95);
+}
+.details_card {
+  gap: 5rem;
+  margin-top: 1.5rem;
+}
+
+.details_card img {
+  width: 50%;
+  border: 20px solid var(--dark-mode-el);
+  border-radius: 13px;
+  aspect-ratio: 2/1.5;
+}
+
+.details_card .card_body {
+  width: 50%;
 }
