@@ -30,11 +30,11 @@ function CountryDetails() {
   return (
     country && (
       <div
-        className="country_details 
+        className="country_details_container 
         "
         style={{ color: theme.color }}
       >
-        <div className="back_btn">
+        <div className="back_btn_container">
           <Link to="/">
             <button
               style={{
@@ -49,11 +49,17 @@ function CountryDetails() {
         </div>
 
         <div className="flex details_card">
-          <img className="card_img" src={country.flag} alt="" />
+          <img
+            className="card_img"
+            src={country.flag}
+            alt={country.name}
+            style={{ borderColor: theme.backgroundColor }}
+          />
           <div className="card_body">
-            <ul>
+            <h3>{country.name}</h3>
+            <ul className="country_stats">
               <li>
-                <h3>{country.name}</h3>
+                <span>Native Name:</span> {country.nativeName}
               </li>
               <li>
                 <span>Popularion:</span>{" "}
@@ -83,11 +89,19 @@ function CountryDetails() {
                 {country.languages?.map((each) => each.name).join(", ")}
               </li>
             </ul>
-            <div>
+            <div className="borders">
               <span>Border Countries: </span>
               <ul>
                 {country.borders?.map((each) => (
-                  <li key={each}>{each}</li>
+                  <li
+                    key={each}
+                    style={{
+                      backgroundColor: theme.backgroundColor,
+                      color: theme.color,
+                    }}
+                  >
+                    {each}
+                  </li>
                 ))}
               </ul>
             </div>
