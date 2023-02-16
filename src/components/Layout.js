@@ -7,16 +7,18 @@ function Layout() {
   const { theme, dark, toggle } = useContext(ThemeContext);
   return (
     <div className="app">
-      <nav
-        className="navbar flex "
+      <div
+        className="navbar_wrapper"
         style={{ backgroundColor: theme.backgroundColor, color: theme.color }}
       >
-        <h2>Where in the World?</h2>
-        <div className="mode_switcher flex">
-          <FaRegMoon style={{ cursor: "pointer" }} onClick={toggle} />
-          <span>Dark mode</span>
-        </div>
-      </nav>
+        <nav className="navbar flex ">
+          <h2>Where in the World?</h2>
+          <div className="mode_switcher flex">
+            <FaRegMoon style={{ cursor: "pointer" }} onClick={toggle} />
+            <span>Dark mode</span>
+          </div>
+        </nav>
+      </div>
 
       <main
         style={{

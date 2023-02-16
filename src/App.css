@@ -4,11 +4,6 @@
   align-items: center;
 }
 
-.app {
-  width: 100vw;
-  max-width: 1440px;
-}
-
 .dark {
   background-color: var(--dark-mode-el);
   color: var(--mode);
@@ -19,11 +14,19 @@
 }
 
 /* navbar */
-.navbar {
+.navbar_wrapper {
   height: 80px;
-  width: 100%;
-  padding: 0 100px;
   box-shadow: 0 1px 4px 1px rgba(0, 0, 0, 0.1);
+  width: 100%;
+}
+
+.navbar {
+  padding: 0 100px;
+  width: 100%;
+  max-width: 1440px;
+  height: 100%;
+  display: flex;
+  margin: auto;
 }
 
 .navbar h2 {
@@ -42,11 +45,13 @@ main {
   min-height: 100vh;
   height: auto;
   width: 100%;
-  padding: 30px 100px;
 }
 
 .home_page {
-  background-color: transparent;
+  width: 100%;
+  max-width: 1440px;
+  padding: 30px 100px;
+  margin: 0 auto;
 }
 
 /* input control */
@@ -80,8 +85,9 @@ main {
 /* Cards */
 .cards_container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-  gap: 40px;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  /* grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); */
+  gap: 16px;
 }
 
 .loading {
@@ -100,7 +106,7 @@ main {
 
 .card .card_img {
   width: 100%;
-  height: 150px;
+  aspect-ratio: 1 / 0.5;
   object-fit: cover;
   border-radius: 10px 10px 0 0;
 }
@@ -188,9 +194,9 @@ main {
 }
 
 .card_body > h3 {
-  font-size: 26px;
+  font-size: 18px;
   font-weight: 800;
-  margin-bottom: 20px;
+  margin-bottom: 12px;
 }
 
 .card_body .country_stats {
@@ -233,4 +239,25 @@ main {
   border: none;
   box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.15);
   border-radius: 4px;
+}
+
+@media screen and (max-width: 500px) {
+  .navbar {
+    height: 70px;
+    padding: 0 20px;
+  }
+
+  main {
+    height: auto;
+    padding: 20px 30px;
+  }
+
+  .input_control {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .input_control input {
+    width: 100%;
+  }
 }
