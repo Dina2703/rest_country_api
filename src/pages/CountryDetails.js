@@ -2,7 +2,7 @@ import { useParams, Link } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { ThemeContext } from "../theme-context";
 import axios from "axios";
-import { countries } from "country-data-list";
+
 import { FaLongArrowAltLeft } from "react-icons/fa";
 
 function CountryDetails() {
