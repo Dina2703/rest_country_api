@@ -151,6 +151,9 @@ main {
 /* country details page */
 .country_details_container {
   height: auto;
+  padding: 0 100px;
+  max-width: 1440px;
+  margin: 0 auto;
 }
 
 .country_details_container .back_btn_container {
@@ -199,11 +202,13 @@ main {
   margin-bottom: 12px;
 }
 
-.card_body .country_stats {
+.card_body .stats {
   display: grid;
-  grid-template-columns: auto auto;
-  row-gap: 10px;
-  margin: 20px 0;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.card_body .country_stats {
+  width: 100%;
 }
 
 .card_body .country_stats li span {
@@ -214,10 +219,14 @@ main {
 
 .card_body .country_stats li {
   font-size: 14px;
+  padding: 4px 0;
 }
 
 .card_body .borders {
   margin: 2rem 0;
+}
+.borders > span {
+  padding-bottom: 15px;
 }
 
 .card_body .borders span {
@@ -241,15 +250,59 @@ main {
   border-radius: 4px;
 }
 
+@media screen and (max-width: 1200px) {
+  .details_card {
+    gap: 2rem;
+    margin-top: 0.5rem;
+  }
+}
+
+@media screen and (max-width: 980px) {
+  .country_details_container {
+    padding: 0;
+  }
+  .navbar {
+    padding: 0 30px;
+  }
+
+  .back_btn_container button {
+    margin-left: 30px;
+  }
+
+  .details_card {
+    flex-direction: column;
+    padding: 0 30px;
+  }
+  .details_card img {
+    width: 100%;
+  }
+  .details_card .card_body {
+    width: 100%;
+    height: auto;
+    padding: 0;
+  }
+
+  .card_body h3 {
+    text-align: center;
+  }
+}
+
 @media screen and (max-width: 500px) {
   .navbar {
     height: 70px;
     padding: 0 20px;
   }
 
-  main {
+  .borders > span {
+    padding-bottom: 22px;
+  }
+
+  .home_page {
     height: auto;
     padding: 20px 30px;
+  }
+  .card_body .stats {
+    grid-template-columns: 1fr;
   }
 
   .input_control {
