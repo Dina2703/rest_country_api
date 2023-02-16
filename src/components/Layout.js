@@ -9,7 +9,10 @@ function Layout() {
     <div className="app">
       <div
         className="navbar_wrapper"
-        style={{ backgroundColor: theme.backgroundColor, color: theme.color }}
+        style={{
+          backgroundColor: theme.backgroundColor,
+          color: theme.color,
+        }}
       >
         <nav className="navbar flex ">
           <h2>Where in the World?</h2>
